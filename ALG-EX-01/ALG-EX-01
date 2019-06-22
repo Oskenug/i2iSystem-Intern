@@ -1,0 +1,56 @@
+package RepetitiveNumbersConroller;
+
+import java.util.Scanner;
+import java.io.IOException;
+
+public class RepetitiveNumbersProgram {
+
+	public static void main(String[] args) throws IOException {
+		
+		int count=0,i,j,k,l,pcs,input,Total=0;
+		
+		Scanner number = new Scanner(System.in);
+		System.out.println("\r\n" + "How many numbers will you enter:");
+		pcs = number.nextInt();
+		int[] SelectedNumber = new int[pcs];
+		
+		System.out.println("Enter elements of the array:");
+		
+		    for (i=0;i<pcs;i++)
+		    {
+		    	for (int x = 0; x < SelectedNumber.length; x++) 
+		    	{
+		    		input = number.nextInt();
+					SelectedNumber[x] = input;
+					Total = Total+ SelectedNumber[x];
+				}
+		        
+				 for (int x = 0; x < SelectedNumber.length; x++)
+				 {
+					 System.out.println("Selected Number["+ x +"]=" + SelectedNumber[x]);
+				 }
+				 
+				 for( j=0;j<pcs;j++)
+				 {
+					 for( k=0;k<pcs;k++)
+					 {
+						 if(SelectedNumber[j]==SelectedNumber[k])
+						 {
+							 for( l=0;l<j;l++)
+							 {
+								 if(SelectedNumber[l]==SelectedNumber[j])
+									 count=-1;
+							 }
+							 
+							 count++;
+						 }
+					 }
+		            if (count != 0)
+		            	System.out.println(SelectedNumber[j] + " number " + count + " times repeated ");
+		            count=0;
+		           }
+		    }
+		    
+		    System.in.read();		
+    }
+}
