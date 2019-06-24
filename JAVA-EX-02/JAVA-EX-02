@@ -6,17 +6,15 @@ public class exercise {
 
 		public static void main(String[] args) 
 		{
-			int i=0;
-			int j=0;
 			int count=0;
 			
 		System.out.println("Please enter a number:");
 	        Scanner SelectedNumber=new Scanner(System.in);
 	        int number=SelectedNumber.nextInt();
 	        
-		    for(i=2; i<=number; i++)
+		    for(int i=2; i<=number; i++)
 		    {
-		    	for(j=1;j<=i;j++)
+		    	for(int j=1;j<=i;j++)
 		    	{
 		    		if(i%j==0)
 		    		{
