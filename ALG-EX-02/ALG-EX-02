@@ -1,0 +1,71 @@
+package project;
+
+import java.util.Scanner;
+
+public class Project {
+	
+	public static void main(String[] args) 
+	{		
+		System.out.println("Please enter the word: ");
+		Scanner getWord = new Scanner(System.in);
+		String inputWord = getWord.next();
+		Project obj = new Project();
+		obj.reverseWordInMyString(inputWord);
+		getWord.close();
+	
+	}
+		static String Reverse;
+		static int Count;
+		public void reverseWordInMyString(String input_string)
+		{
+			try {		
+			String[] words = input_string.split(" ");
+			String ReversedString = "";
+			for (int i = 0; i < words.length; i++)
+		     {
+		        String word = words[i]; 
+		        String ReverseWord = "";
+		        for (int j = word.length()-1; j >= 0; j--) 
+			   {
+				
+				ReverseWord = ReverseWord + word.charAt(j);
+			   }
+		        
+		        ReversedString = ReversedString + ReverseWord + " ";
+			  
+			}
+			Reverse = ReversedString;
+			System.out.println(ReversedString+"\n");
+			for (int i = 0; i < input_string.length(); i++)
+		    {
+				if(Reverse.charAt(i)==input_string.charAt(i)) 
+				{
+					Count++;
+				}
+				else 
+				{
+					Count=0;
+				}
+		    }
+			
+			if(Count==0)
+			{
+				System.out.println("NO!");
+			}
+			else 
+			{
+				System.out.println("YES!");
+			}
+			}
+		//catch(Exception e) 
+		//{
+			//System.out.println("Please enter words only!!");
+		//}
+		
+		finally 
+		{
+			 System.out.println("I think run it again!");	
+		}
+		
+		}
+	}
