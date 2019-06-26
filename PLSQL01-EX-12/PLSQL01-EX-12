@@ -1,0 +1,33 @@
+CREATE OR REPLACE PROCEDURE 
+Richest
+    (EMP_ID OUT HR.EMPLOYEES.EMPLOYEE_ID % TYPE,
+     EMP_NAME OUT HR.EMPLOYEES.FIRST_NAME % TYPE,
+     EMP_SALARY OUT HR.EMPLOYEES.SALARY % TYPE)
+IS
+BEGIN
+SELECT 
+    EMPLOYEE_ID,FIRST_NAME,SALARY 
+    INTO 
+        EMP_ID,EMP_NAME,EMP_SALARY
+        FROM 
+            HR.EMPLOYEES
+            WHERE 
+                SALARY=
+                (SELECT MAX
+                    (SALARY)
+                    FROM 
+                        HR.EMPLOYEES);
+    DBMS_OUTPUT.PUT_LINE('Name of Richest Employee in Company =>>'||EMP_NAME );
+    DBMS_OUTPUT.PUT_LINE('Salary of Richest Employee in Company As Turkish Lira =>> '||EMP_SALARY );
+    DBMS_OUTPUT.PUT_LINE('salary of Richest Employee in Company As Dollar=>> '|| 5 * EMP_SALARY );
+END;
+/
+
+DECLARE 
+    EMP_ID HR.EMPLOYEES.EMPLOYEE_ID % TYPE;
+    EMP_NAME HR.EMPLOYEES.FIRST_NAME % TYPE;
+    EMP_SALARY HR.EMPLOYEES.SALARY % TYPE;
+    BEGIN
+        Richest(EMP_ID,EMP_NAME,EMP_SALARY);
+END;
+/s
