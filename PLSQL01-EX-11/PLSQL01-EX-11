@@ -1,0 +1,17 @@
+SET SERVEROUT ON
+DECLARE 
+PROCEDURE 
+    p_AscendingStarPyramid (vi_RowNumber IN NUMBER)
+IS
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Row Number = '|| vi_RowNumber ||' ' );
+FOR i IN 1..vi_RowNumber
+LOOP
+    DBMS_OUTPUT.PUT_LINE(RPAD(' ', vi_RowNumber - i) || RPAD('*', i * 2 - 1, '*') || RPAD(' ', vi_RowNumber - i));
+END LOOP;
+END 
+    p_AscendingStarPyramid;
+BEGIN
+    p_AscendingStarPyramid(vi_RowNumber => 7);
+END;
+/
