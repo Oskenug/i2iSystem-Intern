@@ -30,4 +30,4 @@ DECLARE
     BEGIN
         Richest(EMP_ID,EMP_NAME,EMP_SALARY);
 END;
-/s
+/
