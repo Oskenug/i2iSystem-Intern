@@ -1,0 +1,33 @@
+CREATE OR REPLACE DIRECTORY DIR AS '/u01/app/oracle/test/';
+
+DECLARE
+  pso_name HR.EMPLOYEES.FIRST_NAME%TYPE;
+  pio_salary HR.EMPLOYEES.SALARY%TYPE;
+  dollar number := 5.77;
+  fileHandler UTL_FILE.FILE_TYPE;
+BEGIN
+    SELECT 
+        FIRST_NAME, SALARY 
+    INTO
+        pso_name,pio_salary
+    FROM 
+        HR.EMPLOYEES 
+    WHERE 
+        SALARY = (
+            SELECT MAX
+                (SALARY) 
+            FROM 
+                HR.EMPLOYEES);
+
+  fileHandler := UTL_FILE.FOPEN('DIR', 'test_file.txt', 'W');
+  UTL_FILE.PUTF(fileHandler, 'Name of the richest employee-> ' || pso_name || '\n');
+  UTL_FILE.PUTF(fileHandler, 'Salary in TL-> ' || pio_salary || '\n');
+  UTL_FILE.PUTF(fileHandler, 'Salary in dollars-> ' || pio_salary/dollar || '\n');
+  UTL_FILE.FCLOSE(fileHandler);
+EXCEPTION
+WHEN 
+    utl_file.invalid_path 
+THEN
+    raise_application_error(-20000, 'ERROR: Invalid PATH FOR file.');
+END;
+/
