@@ -1,0 +1,88 @@
+package calculator;
+
+import java.awt.Button;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Random;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+
+public class calcont {
+	
+	@FXML
+	private TextField txtfirstnumber;	
+	
+	@FXML
+	private TextField txtsecondnumber;
+	
+	@FXML
+	RadioButton sumButton;
+	
+	@FXML
+	RadioButton subtractButton;
+	
+	@FXML
+	RadioButton multiplyButton;
+	
+	@FXML
+	RadioButton divideButton;
+	
+	@FXML
+	Button calculateButton;
+	
+	@FXML
+	Text resultText;
+
+	@FXML
+	private Button btncalculate;
+	
+	
+	public void onClick(ActionEvent e)
+	{
+		double operandOne = Double.parseDouble(txtfirstnumber.getText());
+		double operandTwo = Double.parseDouble(txtsecondnumber.getText());
+		double result = 0;
+		if(sumButton.isSelected())
+		{
+			result = Add(operandOne, operandTwo);
+		}
+		else if(subtractButton.isSelected())
+		{
+			result = Substract(operandOne, operandTwo);
+		}
+		else if(multiplyButton.isSelected())
+		{
+			result = Multiply(operandOne, operandTwo);
+		}
+		else if(divideButton.isSelected())
+		{
+			result = Divide(operandOne, operandTwo);
+		}
+		resultText.setText("Result: " + result);
+	}
+	
+	public static double Add (double FirstNumber, double SecondNumber)
+	{
+		return FirstNumber + SecondNumber;
+	}
+	public static double Substract (double FirstNumber, double SecondNumber)
+	{
+		return FirstNumber - SecondNumber;
+	}
+	public static double Multiply (double FirstNumber, double SecondNumber)
+	{
+		return FirstNumber * SecondNumber;
+	}
+	public static double Divide (double FirstNumber, double SecondNumber)
+	{
+		return FirstNumber / SecondNumber;
+	}
+
+	}
