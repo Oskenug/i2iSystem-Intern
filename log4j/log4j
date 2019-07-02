@@ -1,0 +1,16 @@
+package Log4jTest;
+
+import org.apache.log4j.Logger;
+public class Log4jTest {
+	 static Logger log = Logger.getLogger(Log4jTest.class);
+	public static void main(String[] args) {
+		 
+	    log.debug("Ben bir debug mesajiyim");
+	    log.info("Ben bir info mesajiyim");
+	    log.warn("Ben bir warn mesajiyim");
+	    log.error("Ben bir error mesajiyim");
+	    log.fatal("Ben bir fatal mesajiyim");
+
+	}
+
+}
