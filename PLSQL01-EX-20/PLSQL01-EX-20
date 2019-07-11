@@ -1,0 +1,62 @@
+SET SERVEROUTPUT ON
+CREATE OR REPLACE PACKAGE HR_PALETTE 
+IS
+PROCEDURE 
+	DrawPyramid(pin_Size IN INT);
+PROCEDURE 
+	DrawPyramidSpace(pin_Size IN INT, 
+					 ptotal_Size IN INT);
+PROCEDURE 
+	DrawPyramidPalette(pin_max IN NUMBER);
+END HR_PALETTE;
+
+CREATE OR REPLACE PACKAGE BODY HR_PALETTE 
+IS
+PROCEDURE 
+	DrawPyramid(pin_Size IN INT ) 
+IS
+    BEGIN
+    FOR i IN 1..pin_Size 
+    LOOP
+        DBMS_OUTPUT.PUT('*');
+    END LOOP;
+        DBMS_OUTPUT.NEW_LINE;
+    END DrawPyramid;
+    
+PROCEDURE 
+		DrawPyramidSpace(pin_Size IN INT, 
+						 ptotal_Size IN INT) 
+IS
+    BEGIN
+        FOR i IN 1..ptotal_Size-pin_Size 
+        LOOP
+         DBMS_OUTPUT.PUT(' ');
+        END LOOP;
+    END DrawPyramidSpace;
+
+PROCEDURE 
+		DrawPyramidPalette(pin_max IN NUMBER) 
+IS
+        counter INT := 0;
+    BEGIN
+        WHILE counter < pin_max
+        LOOP
+             HR_PALETTE.DrawPyramidSpace(counter,pin_max);
+             HR_PALETTE.DrawPyramid(2*counter - 1);
+             counter := counter + 1;
+        END LOOP;
+        counter := 0;
+        WHILE counter < pin_max
+        LOOP
+             HR_PALETTE.DrawPyramidSpace(pin_max - counter,pin_max);
+             HR_PALETTE.DrawPyramid(2*pin_max - 2*counter - 1);
+             counter := counter + 1;
+        END LOOP;
+
+    END;
+    
+END HR_PALETTE;
+
+BEGIN
+    HR_PALETTE.DrawPyramidPalette(10);
+END;
